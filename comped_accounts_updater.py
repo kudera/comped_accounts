@@ -46,6 +46,16 @@ for row in query_values:
 
 header_list = [["NAME", "EMAIL", "USER ID", "ACCOUNT ID", "DESCRIPTION", "START DATE", "DATE RAN"]]
 
-GOOGLE_SHEET.insert_lines(GOOGLE_SHEET.sheet_ids["dave_test"], 2, len(query_values))
-GOOGLE_SHEET.write_range("dave_test!A1", header_list)
-GOOGLE_SHEET.write_range("dave_test!A2", query_values)
+GOOGLE_SHEET.insert_lines(GOOGLE_SHEET.sheet_ids["Historical"], 2, len(query_values))
+GOOGLE_SHEET.write_range("Historical!A1", header_list)
+GOOGLE_SHEET.write_range("Historical!A2", query_values)
+
+old_data = GOOGLE_SHEET.read_range("Current Month!A1:G")
+GOOGLE_SHEET.clear_sheet(GOOGLE_SHEET.sheet_ids["Last Month"])
+GOOGLE_SHEET.write_range("Last Month!A1", old_data)
+
+blank_values = [[" " for count in range(7)] for row in range(999)]
+
+GOOGLE_SHEET.write_range("Current Month!A2", blank_values)
+GOOGLE_SHEET.write_range("Current Month!A1", header_list)
+GOOGLE_SHEET.write_range("Current Month!A2", query_values)
