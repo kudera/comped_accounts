@@ -14,10 +14,9 @@ GOOGLE_SHEET = google_sheets_api_class.GoogleSheetsAPI("1fG60nPO-5fy0ovW8jpaafmB
 
 # Execute a SELECT query against MySQL database
 def query_mysql_db(query):
-    conn = mysql.connector.connect(user = CONFIG["sql"]["v3seomoz"]["user"],
-                                   password = CONFIG["sql"]["v3seomoz"]["password"],
-                                   host = CONFIG["sql"]["v3seomoz"]["host"],
-                                   database = CONFIG["sql"]["v3seomoz"]["database"])
+    conn = mysql.connector.connect(user = CONFIG["sql"]["mysql"]["user"],
+                                   password = CONFIG["sql"]["mysql"]["password"],
+                                   host = CONFIG["sql"]["mysql"]["host"])
     cursor = conn.cursor()
     cursor.execute(query)
     query_results = cursor.fetchall()
